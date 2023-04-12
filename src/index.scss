@@ -1,0 +1,66 @@
+.box {
+  margin: 0 auto;
+  margin-top: 4rem;
+  width: 80vw;
+  /* have to have a height */
+  height: 450px;
+  max-width: 800px;
+  text-align: center;
+  position: relative;
+  display: flex;
+  /* overflow: hidden; */
+}
+.imagePerson {
+  width: 100px;
+  height: 100px;
+  overflow: hidden;
+  object-fit: cover;
+  border-radius: 100%;
+  border: 8px solid white;
+  margin-bottom: 0.5rem;
+}
+
+.next,
+.prev {
+  position: absolute;
+  top: 200px;
+  transform: translateY(-50%);
+  display: grid;
+  place-items: center;
+  border-color: transparent;
+  cursor: pointer;
+  z-index: 100;
+}
+
+.prev {
+  left: 0;
+}
+.next {
+  right: 0;
+}
+
+article {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: all 0.3s linear;
+  p {
+    width: 75%;
+    margin: auto;
+    padding-top: 1rem;
+  }
+}
+
+.activeSlide {
+  opacity: 1;
+  transform: translateX(0);
+}
+.lastSlide {
+  transform: translateX(-100%);
+}
+.nextSlide {
+  transform: translateX(100%);
+}
