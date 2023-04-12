@@ -1,11 +1,23 @@
 import data from './data/data.js';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { IoChevronBackCircle, IoChevronForwardCircle } from 'react-icons/io5';
 
 function App() {
   const [people, setPeople] = useState(data);
   const [index, setIndex] = useState(0);
+
+  useEffect(() => {
+    const lastIndex = people.length - 1;
+
+    if (index < 0) {
+      setIndex(lastIndex);
+    }
+    if (index > lastIndex) {
+      setIndex(0);
+    }
+  }, [people, index]);
+
   return (
     <div className="box">
       {people.map((person, personIndex) => {
@@ -22,13 +34,6 @@ function App() {
           position = 'lastSlide';
         }
 
-        if (index === people.length) {
-          setIndex(0);
-        }
-
-        if (index < 0) {
-          setIndex(people.length - 1);
-        }
         return (
           <article className={position} key={id}>
             <img className="imagePerson shadow" src={image} alt={name} />
@@ -40,10 +45,10 @@ function App() {
         );
       })}
 
-      <div className="prev" onClick={() => setIndex(index + 1)}>
+      <div className="prev" onClick={() => setIndex(index - 1)}>
         <IoChevronBackCircle size="3rem" />
       </div>
-      <div className="next" onClick={() => setIndex(index - 1)}>
+      <div className="next" onClick={() => setIndex(index + 1)}>
         <IoChevronForwardCircle size="3rem" />
       </div>
     </div>
